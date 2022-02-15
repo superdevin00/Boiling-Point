@@ -7,7 +7,7 @@ Shader "Custom/CurtainShader"
     Properties
     {
         
-        _Cutoff("Cutoff", Range(0, 1.0)) = 0.5
+        _Cutoff("Cutoff", Range(0, 1.01)) = 0.5
         _Color("Color", Color) = (1, 1, 1, 1)
         _MainTex("Texture", 2D) = "white"
         _TransitionTex("Transition", 2D) = "white"
