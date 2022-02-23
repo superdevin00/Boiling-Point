@@ -2,15 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MinigameManager : MonoBehaviour
 {
     int score;
     int lives;
+    public TMP_Text scoreText;
+    public TMP_Text livesText;
+
     float gameSpeed;
     Queue<string> playedGames = new Queue<string>();
     public string[] minigameScenes;
     SceneLoader sceneLoader;
+
+    
+
 
     private void Awake()
     {
@@ -34,7 +41,7 @@ public class MinigameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        scoreText.text = score.ToString("D3");
     }
 
     public void mainGameBegin()

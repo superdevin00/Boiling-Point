@@ -11,5 +11,10 @@ public class SimpleBlit : MonoBehaviour
     {
         Graphics.Blit(src, dst, TransitionMaterial);
     }
+
+    public Material GetMaterial()
+    {
+        return TransitionMaterial;
+    }
 }
 
