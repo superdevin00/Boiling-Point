@@ -363,5 +363,55 @@ PrefabInstance:
       propertyPath: m_Name
       value: MinigameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5961099775672431799, guid: 342fb6166dbf69645a8bf87f3eea1dad,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961099775672431799, guid: 342fb6166dbf69645a8bf87f3eea1dad,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961099776789124985, guid: 342fb6166dbf69645a8bf87f3eea1dad,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961099776789124985, guid: 342fb6166dbf69645a8bf87f3eea1dad,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1440
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961099776789124985, guid: 342fb6166dbf69645a8bf87f3eea1dad,
+        type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 2880
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961099776789124985, guid: 342fb6166dbf69645a8bf87f3eea1dad,
+        type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961099776789124985, guid: 342fb6166dbf69645a8bf87f3eea1dad,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961099776954596462, guid: 342fb6166dbf69645a8bf87f3eea1dad,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961099776954596462, guid: 342fb6166dbf69645a8bf87f3eea1dad,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961099776954596462, guid: 342fb6166dbf69645a8bf87f3eea1dad,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 342fb6166dbf69645a8bf87f3eea1dad, type: 3}
