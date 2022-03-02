@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class MinigameManager : MonoBehaviour
 {
     int score;
     int lives;
+
     bool winConditionMet;
     bool minigameStarted;
+    bool minigameEnded;
 
     public TMP_Text scoreText;
     public TMP_Text livesText;
     public TMP_Text timeText;
     public TMP_Text promptText;
+
+    public GameObject canvas;
 
     float gameSpeed;
     Queue<string> playedGames = new Queue<string>();
@@ -29,7 +34,7 @@ public class MinigameManager : MonoBehaviour
         //Make sure that Minigame Manager persists thru scenes
         GameObject[] objects = GameObject.FindGameObjectsWithTag("MinigameManager");
 
-        if (objects.Length > 1 || SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
+        if (objects.Length > 1)
         {
             Destroy(this.gameObject);
         }
@@ -41,22 +46,45 @@ public class MinigameManager : MonoBehaviour
     void Start()
     {
         sceneLoader = GetComponent<SceneLoader>();
-        
-        
+        lives = 2;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Set Score Text
         scoreText.text = score.ToString("D3");
-        if (Input.GetKeyDown(KeyCode.Q))
+
+        //Set Lives Text
+        switch (lives)
         {
-            StartCoroutine(minigameTimer(60.0f));
+            case 3: 
+                livesText.text = "~~~";
+                break;
+            case 2:
+                livesText.text = "~~";
+                break;
+            case 1:
+                livesText.text = "~";
+                break;
+            case 0:
+                livesText.text = "X";
+                break;
+            default:
+                livesText.text = "err";
+                break;
+
         }
+
+
 
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
         {
-            Destroy(this.gameObject);
+            canvas.SetActive(false);
+        }
+        else
+        {
+            canvas.SetActive(true);
         }
 
     }
@@ -67,6 +95,7 @@ public class MinigameManager : MonoBehaviour
         lives = 3;
         gameSpeed = 1.0f;
         playedGames.Clear();
+        chooseNewMinigame();
     }
     public void minigameWin()
     {
@@ -123,7 +152,7 @@ public class MinigameManager : MonoBehaviour
             chosenGameID = Random.Range(0, minigameScenes.Length);
         }
 
-        sceneLoader.SetScene( minigameScenes[chosenGameID] );
+        sceneLoader.StartSceneTransitionOut( minigameScenes[chosenGameID] );
 
     }
 
@@ -135,6 +164,8 @@ public class MinigameManager : MonoBehaviour
 
     IEnumerator minigameStartSequence(string prompt, float time)
     {
+        setMinigameEnded(false);
+        setMinigameStarted(false);
         promptText.text = prompt;
         yield return new WaitForSecondsRealtime(2);
         promptText.text = "Start!";
@@ -142,6 +173,7 @@ public class MinigameManager : MonoBehaviour
         promptText.text = "";
         StartCoroutine(minigameTimer(time));
         setMinigameStarted(true);
+
     }
 
     IEnumerator minigameTimer(float clockTime)
@@ -175,6 +207,8 @@ public class MinigameManager : MonoBehaviour
     {
         winConditionMet = winCon;
     }
+
+    // Get/Set MinigameStarted
     public bool getMinigameStarted()
     {
         return minigameStarted;
@@ -183,9 +217,21 @@ public class MinigameManager : MonoBehaviour
     {
         minigameStarted = minigameStartSet;
     }
+
+    // Get/Set MinigameEnded
+    public bool getMinigameEnded()
+    {
+        return minigameEnded;
+    }
+    public void setMinigameEnded(bool minigameEndSet)
+    {
+        minigameEnded = minigameEndSet;
+    }
+
+
     public void mainGameEnd()
     {
-        sceneLoader.SetScene("MainMenu");
+        sceneLoader.StartSceneTransitionOut("MainMenu");
     }
 
 }

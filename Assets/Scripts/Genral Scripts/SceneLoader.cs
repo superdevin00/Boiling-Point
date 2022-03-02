@@ -8,6 +8,7 @@ public class SceneLoader : MonoBehaviour
     Camera mainCamera;
     SimpleBlit transitionMaterialScript;
     Material curtain;
+    //public GameObject floodImage;
     float time;
     float cutoffValue;
 
@@ -50,6 +51,7 @@ public class SceneLoader : MonoBehaviour
 
     public void StartSceneTransitionOut(string targetScene)
     {
+        //floodImage.SetActive(false);
         curtain.SetFloat("_Cutoff", 0.0f);
         time = 0.0f;
         cutoffValue = 0.0f;
@@ -60,6 +62,7 @@ public class SceneLoader : MonoBehaviour
 
     public void StartSceneTransitionIn()
     {
+        //floodImage.SetActive(true);
         curtain.SetFloat("_Cutoff", 1.01f);
         time = 0.0f;
         cutoffValue = 1.01f;
@@ -74,24 +77,24 @@ public class SceneLoader : MonoBehaviour
 
         while (cutoffValue < 1.01f)
         {
-            Debug.Log("Coroutine");
+            
             cutoffValue = Mathf.Lerp(0.0f, 1.01f, time);
 
             curtain.SetFloat("_Cutoff", cutoffValue);
             time += 0.7f * Time.deltaTime;
             yield return null;
         }
-
+        //floodImage.SetActive(true);
         SetScene(targetScene);
     }
 
     IEnumerator TransitionIn()
     {
         //Curtain animation
-
+        //floodImage.SetActive(false);
         while (cutoffValue > 0.0f)
         {
-            Debug.Log("Coroutine");
+            
             cutoffValue = Mathf.Lerp(1.01f, 0.0f, time);
 
             curtain.SetFloat("_Cutoff", cutoffValue);
