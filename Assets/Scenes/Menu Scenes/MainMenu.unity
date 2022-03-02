@@ -410,7 +410,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1168068763}
+      - m_Target: {fileID: 970795848}
         m_MethodName: StartSceneTransitionOut
         m_Mode: 5
         m_Arguments:
@@ -418,7 +418,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: QuickReact
+          m_StringArgument: QuickTap
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &556438715
@@ -593,6 +593,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0de9e5eb728df1743acd7f6893b429c6, type: 3}
+--- !u!114 &970795848 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1464743036, guid: 0de9e5eb728df1743acd7f6893b429c6,
+    type: 3}
+  m_PrefabInstance: {fileID: 970795847}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91dc9f80ddfdbf44ae0e34e255e260d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1168068762
 GameObject:
   m_ObjectHideFlags: 0

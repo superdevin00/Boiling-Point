@@ -42,6 +42,7 @@ public class SceneLoader : MonoBehaviour
     public void SetScene(string targetScene)
     {
         SceneManager.LoadScene(targetScene);
+        curtain.SetFloat("_Cutoff", 1.01f);
         StartCoroutine(TransitionIn());
     }
 
