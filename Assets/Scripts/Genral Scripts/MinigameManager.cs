@@ -254,6 +254,11 @@ public class MinigameManager : MonoBehaviour
         minigameEnded = minigameEndSet;
     }
 
+    public void setScreenFlood(bool flood)
+    {
+        screenFloodImage.SetActive(flood);
+    }
+
 
     public void mainGameEnd()
     {

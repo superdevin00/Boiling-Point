@@ -11,9 +11,12 @@ public class SceneLoader : MonoBehaviour
     //public GameObject floodImage;
     float time;
     float cutoffValue;
+    MinigameManager minigameManager;
 
     private void Start()
     {
+        minigameManager = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<MinigameManager>();
+
         mainCamera = FindObjectOfType<Camera>();
         transitionMaterialScript = mainCamera.GetComponent<SimpleBlit>();
         curtain = transitionMaterialScript.GetMaterial();
@@ -51,7 +54,7 @@ public class SceneLoader : MonoBehaviour
 
     public void StartSceneTransitionOut(string targetScene)
     {
-        //floodImage.SetActive(false);
+        minigameManager.setScreenFlood(false);
         curtain.SetFloat("_Cutoff", 0.0f);
         time = 0.0f;
         cutoffValue = 0.0f;
@@ -62,7 +65,7 @@ public class SceneLoader : MonoBehaviour
 
     public void StartSceneTransitionIn()
     {
-        //floodImage.SetActive(true);
+        minigameManager.setScreenFlood(true);
         curtain.SetFloat("_Cutoff", 1.01f);
         time = 0.0f;
         cutoffValue = 1.01f;
@@ -84,14 +87,14 @@ public class SceneLoader : MonoBehaviour
             time += 0.7f * Time.deltaTime;
             yield return null;
         }
-        //floodImage.SetActive(true);
+        minigameManager.setScreenFlood(true);
         SetScene(targetScene);
     }
 
     IEnumerator TransitionIn()
     {
         //Curtain animation
-        //floodImage.SetActive(false);
+        minigameManager.setScreenFlood(false);
         while (cutoffValue > 0.0f)
         {
             
