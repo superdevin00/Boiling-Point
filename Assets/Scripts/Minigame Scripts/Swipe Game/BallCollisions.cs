@@ -7,6 +7,13 @@ public class BallCollisions : MonoBehaviour
     [SerializeField] GameObject ball;
     [SerializeField] Transform ballSpawn;
 
+    MinigameManager minigameManager;
+    private void Start()
+    {
+        minigameManager = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<MinigameManager>();
+        minigameManager.initMinigame("Make 1 Goal!", 5);
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag.Equals("net"))

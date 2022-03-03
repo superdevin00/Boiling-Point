@@ -30,20 +30,27 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (minigameManager.getMinigameStarted() == true && firstTileSet == false)
+        if (minigameManager.getMinigameEnded() == false)
         {
-            ChooseTile();
-            firstTileSet = true;
-        }
+            if (minigameManager.getMinigameStarted() == true && firstTileSet == false)
+            {
+                ChooseTile();
+                firstTileSet = true;
+            }
 
-        if (changeSpeed <= 0)
-        {
-            score -= 1;
-        }
+            if (changeSpeed <= 0)
+            {
+                score -= 1;
+            }
 
-        if (score >= 15)
+            if (score >= 15)
+            {
+                minigameManager.setWinConditionMet(true);
+            }
+        }
+        else
         {
-            minigameManager.setWinConditionMet(true);
+            DisableAllTiles();
         }
     }
 
@@ -53,6 +60,14 @@ public class GameManager : MonoBehaviour
         scoreTxt.text = score.ToString();
         buttons[index].interactable = false;
         ChooseTile();
+    }
+
+    public void DisableAllTiles()
+    {
+        foreach (Button tile in buttons)
+        {
+            tile.interactable = false;
+        }
     }
 
     private void ChooseTile()

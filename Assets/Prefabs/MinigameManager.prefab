@@ -391,6 +391,7 @@ MonoBehaviour:
   timeText: {fileID: 1532853656}
   promptText: {fileID: 7758333711231750743}
   canvas: {fileID: 5961099776789124967}
+  screenFloodImage: {fileID: 1497484407224623188}
   minigameScenes:
   - QuickTap
 --- !u!114 &5961099775285026530

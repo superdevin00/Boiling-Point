@@ -20,8 +20,10 @@ public class MinigameManager : MonoBehaviour
     public TMP_Text promptText;
 
     public GameObject canvas;
+    public GameObject screenFloodImage;
 
     float gameSpeed;
+
     Queue<string> playedGames = new Queue<string>();
     public string[] minigameScenes;
     SceneLoader sceneLoader;
@@ -45,8 +47,9 @@ public class MinigameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameSpeed = 1.0f;
         sceneLoader = GetComponent<SceneLoader>();
-        lives = 2;
+        //lives = 2;
     }
 
     // Update is called once per frame
@@ -77,7 +80,7 @@ public class MinigameManager : MonoBehaviour
         }
 
 
-
+        //Turn Off minigame UI on Main Menu
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
         {
             canvas.SetActive(false);
@@ -86,6 +89,9 @@ public class MinigameManager : MonoBehaviour
         {
             canvas.SetActive(true);
         }
+
+        //Update Timescale
+        Time.timeScale = gameSpeed;
 
     }
 
@@ -101,16 +107,18 @@ public class MinigameManager : MonoBehaviour
     {
         //Incriment score
         score++;
-        
+
         //Check if score is multiple of 5
         //If so, speed up
         if (score % 5 == 0)
         {
             speedUp();
         }
-
-        //New minigame
-        chooseNewMinigame();
+        else
+        {
+            //New minigame
+            chooseNewMinigame();
+        }
         
 
     }
@@ -125,9 +133,11 @@ public class MinigameManager : MonoBehaviour
         {
             mainGameEnd();
         }
-
-        //New minigame
-        chooseNewMinigame();
+        else
+        {
+            //New minigame
+            chooseNewMinigame();
+        }
     }
     public void addGameToQueue()
     {
@@ -185,6 +195,8 @@ public class MinigameManager : MonoBehaviour
             yield return null;
         }
 
+        setMinigameEnded(true);
+
         if (winConditionMet)
         {
             minigameWin();
@@ -197,7 +209,21 @@ public class MinigameManager : MonoBehaviour
 
     public void speedUp()
     {
+        float newGameSpeed = 1.0f;
+        if (gameSpeed <= 1.0f)
+        {
+            newGameSpeed = 2.0f;
+        }
 
+        StartCoroutine(speedUpSequence(newGameSpeed));
+    }
+    IEnumerator speedUpSequence(float newGameSpeed)
+    {
+        promptText.text = "Speed Up!";
+        yield return new WaitForSecondsRealtime(2);
+        gameSpeed = newGameSpeed;
+        promptText.text = "";
+        chooseNewMinigame();
     }
     public int getScore()
     {
@@ -231,6 +257,16 @@ public class MinigameManager : MonoBehaviour
 
     public void mainGameEnd()
     {
+        int highscore = PlayerPrefs.GetInt("highscore");
+
+        if (score > highscore)
+        {
+            highscore = score;
+        }
+
+        PlayerPrefs.SetInt("highscore", highscore);
+        PlayerPrefs.Save();
+
         sceneLoader.StartSceneTransitionOut("MainMenu");
     }
 
