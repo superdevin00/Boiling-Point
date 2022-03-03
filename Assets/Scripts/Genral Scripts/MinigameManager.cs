@@ -23,6 +23,8 @@ public class MinigameManager : MonoBehaviour
     public GameObject screenFloodImage;
 
     float gameSpeed;
+    int gameDifficulty;
+    float timeRemaining;
 
     Queue<string> playedGames = new Queue<string>();
     public string[] minigameScenes;
@@ -47,6 +49,7 @@ public class MinigameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameDifficulty = 1;
         gameSpeed = 1.0f;
         sceneLoader = GetComponent<SceneLoader>();
         //lives = 2;
@@ -100,6 +103,7 @@ public class MinigameManager : MonoBehaviour
         score = 0;
         lives = 3;
         gameSpeed = 1.0f;
+        gameDifficulty = 1;
         playedGames.Clear();
         chooseNewMinigame();
     }
@@ -145,14 +149,16 @@ public class MinigameManager : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         playedGames.Enqueue(currentScene.name);
 
-        //Limit queue to 4 games
-        if (playedGames.Count >= 5)
+        //Limit queue to 1 games
+        if (playedGames.Count >= 2)
         {
             playedGames.Dequeue();
         }
     }
     public void chooseNewMinigame()
     {
+        addGameToQueue();
+
         int games = minigameScenes.Length;
 
         int chosenGameID = Random.Range(0, minigameScenes.Length);
@@ -188,8 +194,11 @@ public class MinigameManager : MonoBehaviour
 
     IEnumerator minigameTimer(float clockTime)
     {
+
+
         while (clockTime > 0)
         {
+            timeRemaining = clockTime;
             clockTime -= Time.deltaTime;
             timeText.text = (clockTime).ToString("0");
             yield return null;
@@ -209,8 +218,22 @@ public class MinigameManager : MonoBehaviour
 
     public void speedUp()
     {
+        //increase difficulty
+
+        gameDifficulty++;
         float newGameSpeed = 1.0f;
-        if (gameSpeed <= 1.0f)
+        switch (gameDifficulty)
+        {
+            case 0: newGameSpeed = 1.0f; break;
+            case 1: newGameSpeed = 1.0f; break;
+            case 2: newGameSpeed = 1.5f; break;
+            case 3: newGameSpeed = 1.75f; break;
+            case 4: newGameSpeed = 2; break;
+            case 5: newGameSpeed = 2.25f; break;
+            default: newGameSpeed = 2.5f; break;
+
+        }
+        if (gameDifficulty <= 1)
         {
             newGameSpeed = 2.0f;
         }
@@ -259,9 +282,17 @@ public class MinigameManager : MonoBehaviour
         screenFloodImage.SetActive(flood);
     }
 
-
+    public float getTimeRemaining()
+    {
+        return timeRemaining;
+    }
+    public int getDifficultyLevel()
+    {
+        return gameDifficulty;
+    }
     public void mainGameEnd()
     {
+        gameSpeed = 1.0f;
         int highscore = PlayerPrefs.GetInt("highscore");
 
         if (score > highscore)

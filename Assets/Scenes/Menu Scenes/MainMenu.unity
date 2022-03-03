@@ -871,6 +871,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1532853656, guid: 342fb6166dbf69645a8bf87f3eea1dad, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5961099775285026529, guid: 342fb6166dbf69645a8bf87f3eea1dad,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -931,7 +935,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: MinigameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5961099775672431688, guid: 342fb6166dbf69645a8bf87f3eea1dad,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5961099776789124967, guid: 342fb6166dbf69645a8bf87f3eea1dad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961099776954596463, guid: 342fb6166dbf69645a8bf87f3eea1dad,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9146999499326452566, guid: 342fb6166dbf69645a8bf87f3eea1dad,
         type: 3}
       propertyPath: m_IsActive
       value: 0
