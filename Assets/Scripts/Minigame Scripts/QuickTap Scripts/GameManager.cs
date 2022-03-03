@@ -16,12 +16,10 @@ public class GameManager : MonoBehaviour
     float changeSpeed = 1f;
 
     public MinigameManager minigameManager;
-    GameObject minigameManagerObject;
-
     private void Start()
     {
-        minigameManagerObject = GameObject.FindGameObjectWithTag("MinigameManager");
-        minigameManager = minigameManagerObject.GetComponent<MinigameManager>();
+
+        minigameManager = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<MinigameManager>();
 
         firstTileSet = false;
         minigameManager.initMinigame("Tap 15 Tiles!", 15);

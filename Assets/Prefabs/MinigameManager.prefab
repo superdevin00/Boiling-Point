@@ -391,6 +391,7 @@ MonoBehaviour:
   screenFloodImage: {fileID: 1497484407224623188}
   minigameScenes:
   - QuickTap
+  - ObjectDetection
   - MiniGamePiano
 --- !u!114 &5961099775285026530
 MonoBehaviour:
@@ -555,7 +556,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5961099776789124987
 RectTransform:
   m_ObjectHideFlags: 0

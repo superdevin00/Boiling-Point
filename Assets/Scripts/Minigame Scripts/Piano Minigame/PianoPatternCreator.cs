@@ -9,7 +9,7 @@ public class PianoPatternCreator : MonoBehaviour
     [SerializeField] GameObject tile;
     [SerializeField] GameObject row;
     [SerializeField] Camera mainCamera;
-    [SerializeField] MinigameManager minigameManager;
+    MinigameManager minigameManager;
     public bool[,] pattern = new bool[10, 4];
     public GameObject[] rows = new GameObject[10];
     public int currentRow;
@@ -18,13 +18,15 @@ public class PianoPatternCreator : MonoBehaviour
 
     void Start()
     {
+        minigameManager = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<MinigameManager>();
+        minigameManager.initMinigame("Tap 10 Keys!", 10);
         //Debug.Log("Fill Pattern Start");
         fillPattern();
         //Debug.Log("Fill Pattern Done");
         createRows();
         //Debug.Log("Create Rows Done");
         targetVertical = transform.position.y;
-        minigameManager.initMinigame("Tap 10 Keys!", 10);
+        
     }
 
     void Update()

@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minigame Scenes/SwipeGame.unity
     guid: 176d7332504ba6d4ab6bdd39fff426d6
+  - enabled: 1
+    path: Assets/Scenes/Minigame Scenes/ObjectDetection.unity
+    guid: 6f42916712fe78d49bcc313296f2501a
+  - enabled: 1
+    path: Assets/Scenes/Minigame Scenes/MiniGamePiano.unity
+    guid: 74e1c14439861194cb22d86405fb7adb
   m_configObjects: {}

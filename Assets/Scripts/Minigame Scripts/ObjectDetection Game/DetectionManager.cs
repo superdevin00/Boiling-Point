@@ -7,7 +7,7 @@ public class DetectionManager : MonoBehaviour
 {
     [SerializeField] Button[] buttons;
 
-    [SerializeField] MinigameManager minigameManager;
+    MinigameManager minigameManager;
 
     [SerializeField] GameObject win;
     [SerializeField] GameObject lose;
@@ -30,6 +30,8 @@ public class DetectionManager : MonoBehaviour
         buttons[0].onClick.AddListener(clickZero);
         buttons[1].onClick.AddListener(clickOne);
         buttons[2].onClick.AddListener(clickTwo);
+
+        minigameManager = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<MinigameManager>();
 
         minigameManager.initMinigame("Look Closely!", 8);
 

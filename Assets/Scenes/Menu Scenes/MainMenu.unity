@@ -871,16 +871,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5961099775285026528, guid: 342fb6166dbf69645a8bf87f3eea1dad,
-        type: 3}
-      propertyPath: minigameScenes.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5961099775285026528, guid: 342fb6166dbf69645a8bf87f3eea1dad,
-        type: 3}
-      propertyPath: minigameScenes.Array.data[1]
-      value: SwipeGame
-      objectReference: {fileID: 0}
     - target: {fileID: 5961099775285026529, guid: 342fb6166dbf69645a8bf87f3eea1dad,
         type: 3}
       propertyPath: m_LocalPosition.x
