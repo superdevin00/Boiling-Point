@@ -13,10 +13,12 @@ public class PianoTileController : MonoBehaviour
     [SerializeField] Sprite blackSprite;
     [SerializeField] Sprite graySprite;
     [SerializeField] Sprite redSprite;
+    public PianoTileRow parentRow;
     public bool black;
-    bool pressed;
+    public bool pressed;
     public bool locked;
     public bool failed;
+    
 
 
 
@@ -24,13 +26,17 @@ public class PianoTileController : MonoBehaviour
     void Start()
     {
         pressed = false;
-        locked = false;
+        //locked = true;
         failed = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        //transform.position.Set(transform.position.x, transform.position.y - 1, transform.position.z);
+        //Vector3 newPos = new Vector3(transform.position.x, transform.position.y - (Time.deltaTime), transform.position.z);
+        //transform.position = newPos;
         if (black)
         {
             if (pressed)
@@ -53,18 +59,47 @@ public class PianoTileController : MonoBehaviour
                 sprRen.sprite = whiteSprite;
             }
         }
-
-        foreach(Touch touch in Input.touches)
+        bool touched = false;
+        foreach (Touch touch in Input.touches)
         {
-            if(touch.phase == TouchPhase.Began)
+            if (touch.phase == TouchPhase.Began)
             {
                 Vector2 tapPos = Camera.main.ScreenToWorldPoint(touch.position);
-
+                touched = true;
                 if (Physics2D.OverlapPoint(tapPos) == col && !locked && !failed)
                 {
                     pressed = true;
+                    if (black)
+                    {
+                        parentRow.advanceRow();
+                    }
+                    else
+                    {
+                        parentRow.failGame();
+                    }
                 }
             }
         }
+
+        if (Input.GetMouseButtonDown(0) && !touched)
+        {
+            //Debug.Log("Hype");
+            Vector2 tapPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            if (Physics2D.OverlapPoint(tapPos) == col && !locked && !failed)
+            {
+                
+                pressed = true;
+                if (black)
+                {
+                    parentRow.advanceRow();
+                }
+                else
+                {
+                    parentRow.failGame();
+                }
+            }
+        }
+
     }
 }
