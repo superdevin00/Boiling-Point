@@ -12,6 +12,7 @@ public class PianoTileRow : MonoBehaviour
     public PianoPatternCreator parentCreator;
     public int index;
     public GameObject[] tiles = new GameObject[4];
+    public MinigameManager minigameManager;
     //int currentRow = 0;
     // Start is called before the first frame update
     void Start()
@@ -55,7 +56,7 @@ public class PianoTileRow : MonoBehaviour
             temp.parentRow = gameObject.GetComponent(typeof(PianoTileRow)) as PianoTileRow;
             temp.black = parentCreator.pattern[index, i];
             temp.locked = locked;
-
+            temp.minigameManager = minigameManager;
         }
     }
 

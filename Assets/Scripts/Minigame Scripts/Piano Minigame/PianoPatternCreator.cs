@@ -9,6 +9,7 @@ public class PianoPatternCreator : MonoBehaviour
     [SerializeField] GameObject tile;
     [SerializeField] GameObject row;
     [SerializeField] Camera mainCamera;
+    [SerializeField] MinigameManager minigameManager;
     public bool[,] pattern = new bool[10, 4];
     public GameObject[] rows = new GameObject[10];
     public int currentRow;
@@ -23,6 +24,7 @@ public class PianoPatternCreator : MonoBehaviour
         createRows();
         //Debug.Log("Create Rows Done");
         targetVertical = transform.position.y;
+        minigameManager.initMinigame("Tap 10 Keys!", 10);
     }
 
     void Update()
@@ -88,6 +90,7 @@ public class PianoPatternCreator : MonoBehaviour
             {
                 temp.locked = true;
             }
+            temp.minigameManager = minigameManager;
             temp.createTiles();
         }
     }
@@ -107,10 +110,12 @@ public class PianoPatternCreator : MonoBehaviour
             failed = true;
         }
         mainCamera.backgroundColor = new Color(255f, 0f, 0f);
+        minigameManager.setWinConditionMet(false);
     }
 
     public void winGame()
     {
         mainCamera.backgroundColor = new Color(0f, 255f, 0f);
+        minigameManager.setWinConditionMet(true);
     }
 }

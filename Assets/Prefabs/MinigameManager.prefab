@@ -66,9 +66,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b2416c7add542274b9d2bd6621de9c50, type: 2}
-  m_sharedMaterial: {fileID: 7338067818505020168, guid: b2416c7add542274b9d2bd6621de9c50,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -200,9 +199,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Prompt!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2d997d70bd58ebd458e9eff001ab9aa3, type: 2}
-  m_sharedMaterial: {fileID: 8159627594472827214, guid: 2d997d70bd58ebd458e9eff001ab9aa3,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -393,6 +391,7 @@ MonoBehaviour:
   screenFloodImage: {fileID: 1497484407224623188}
   minigameScenes:
   - QuickTap
+  - MiniGamePiano
 --- !u!114 &5961099775285026530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,9 +470,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ~~~
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b2416c7add542274b9d2bd6621de9c50, type: 2}
-  m_sharedMaterial: {fileID: 7338067818505020168, guid: b2416c7add542274b9d2bd6621de9c50,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -708,9 +706,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 000
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b2416c7add542274b9d2bd6621de9c50, type: 2}
-  m_sharedMaterial: {fileID: 7338067818505020168, guid: b2416c7add542274b9d2bd6621de9c50,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

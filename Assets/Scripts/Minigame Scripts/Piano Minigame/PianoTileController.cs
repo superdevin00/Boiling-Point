@@ -18,6 +18,7 @@ public class PianoTileController : MonoBehaviour
     public bool pressed;
     public bool locked;
     public bool failed;
+    public MinigameManager minigameManager;
     
 
 
@@ -59,15 +60,38 @@ public class PianoTileController : MonoBehaviour
                 sprRen.sprite = whiteSprite;
             }
         }
-        bool touched = false;
-        foreach (Touch touch in Input.touches)
-        {
-            if (touch.phase == TouchPhase.Began)
+
+        if (minigameManager.getMinigameEnded() == false && minigameManager.getMinigameStarted() == true) {
+            bool touched = false;
+            foreach (Touch touch in Input.touches)
             {
-                Vector2 tapPos = Camera.main.ScreenToWorldPoint(touch.position);
-                touched = true;
+                if (touch.phase == TouchPhase.Began)
+                {
+                    Vector2 tapPos = Camera.main.ScreenToWorldPoint(touch.position);
+                    touched = true;
+                    if (Physics2D.OverlapPoint(tapPos) == col && !locked && !failed)
+                    {
+                        pressed = true;
+                        if (black)
+                        {
+                            parentRow.advanceRow();
+                        }
+                        else
+                        {
+                            parentRow.failGame();
+                        }
+                    }
+                }
+            }
+
+            if (Input.GetMouseButtonDown(0) && !touched)
+            {
+                //Debug.Log("Hype");
+                Vector2 tapPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
                 if (Physics2D.OverlapPoint(tapPos) == col && !locked && !failed)
                 {
+
                     pressed = true;
                     if (black)
                     {
@@ -80,26 +104,5 @@ public class PianoTileController : MonoBehaviour
                 }
             }
         }
-
-        if (Input.GetMouseButtonDown(0) && !touched)
-        {
-            //Debug.Log("Hype");
-            Vector2 tapPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            if (Physics2D.OverlapPoint(tapPos) == col && !locked && !failed)
-            {
-                
-                pressed = true;
-                if (black)
-                {
-                    parentRow.advanceRow();
-                }
-                else
-                {
-                    parentRow.failGame();
-                }
-            }
-        }
-
     }
 }
