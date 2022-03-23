@@ -9,6 +9,7 @@ TagManager:
   - corner
   - boundry
   - MinigameManager
+  - ball
   layers:
   - Default
   - TransparentFX

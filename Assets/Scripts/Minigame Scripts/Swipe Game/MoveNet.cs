@@ -9,11 +9,10 @@ public class MoveNet : MonoBehaviour
     [SerializeField] float speed = 1f;
     public bool canMove;
     public bool firstMove;
+
     void Start()
     {
-
         firstMove = true;
-
     }
     void Update()
     {
@@ -36,6 +35,5 @@ public class MoveNet : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, pointB, speed * Time.deltaTime);
             }
         }
-
     }
 }

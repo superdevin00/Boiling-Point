@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class BallCollisions : MonoBehaviour
 {
-    [SerializeField] GameObject ball;
+    [SerializeField] GameObject activeBall;
+    [SerializeField] GameObject newBall;
     [SerializeField] Transform ballSpawn;
+
+    public Swipe swipe;
+
+    [SerializeField] ParticleSystem goalParticles;
+    [SerializeField] AudioSource goalAudio;
+
+    [SerializeField] AudioSource resetAudio;
 
     MinigameManager minigameManager;
     private void Start()
@@ -18,31 +26,27 @@ public class BallCollisions : MonoBehaviour
     {
         if(collision.gameObject.tag.Equals("net"))
         {
-            //add score
-            //play particles
-            //play sound
-            Destroy(gameObject, .1f);
-            Instantiate(ball, ballSpawn.position, Quaternion.identity);
+            Debug.Log("GOAL!");
+
+            goalParticles.Play();
+            goalAudio.Play();
+
+            NewShot();
         }
 
-        if (collision.gameObject.tag.Equals("corner") || collision.gameObject.tag.Equals("boundry"))
+        else if (collision.gameObject.tag.Equals("boundry"))
         {
-            //play particles
-            //play sound
-            Destroy(gameObject, .1f);
-            Instantiate(ball, ballSpawn.position, Quaternion.identity);
-        }
+            resetAudio.Play();
 
-        void Start()
-        {
-            StartCoroutine(SelfDestruct());
+            NewShot();
         }
+    }
 
-        IEnumerator SelfDestruct()
-        {
-            yield return new WaitForSeconds(3f);
-            Destroy(gameObject);
-            Instantiate(ball, ballSpawn.position, Quaternion.identity);
-        }
+    private void NewShot()
+    {
+        Instantiate(newBall, ballSpawn.position, Quaternion.identity);
+        Destroy(gameObject, .2f);
+        swipe.canSwipe = true;
+        Debug.Log("canSwipe = true");
     }
 }

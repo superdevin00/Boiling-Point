@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5160694194725854004}
   - component: {fileID: 4325913513437573124}
   m_Layer: 5
-  m_Name: Button
+  m_Name: QuickTap Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

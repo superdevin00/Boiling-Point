@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     float changeSpeed = 1f;
 
     public MinigameManager minigameManager;
+
+    [SerializeField] AudioSource clickAudio;
+
     private void Start()
     {
 
@@ -23,7 +26,6 @@ public class GameManager : MonoBehaviour
 
         firstTileSet = false;
         minigameManager.initMinigame("Tap 15 Tiles!", 15);
-        //ChooseTile();
     }
 
     private void Update()
@@ -58,6 +60,8 @@ public class GameManager : MonoBehaviour
         scoreTxt.text = score.ToString();
         buttons[index].interactable = false;
         ChooseTile();
+
+        clickAudio.Play();
     }
 
     public void DisableAllTiles()
