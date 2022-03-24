@@ -1585,7 +1585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointA: {x: -0.5, y: 1, z: 4.05}
   pointB: {x: 4.75, y: 1, z: 4.05}
-  speed: 2
+  speed: 5
   canMove: 1
   firstMove: 0
 --- !u!1001 &1126659058969152466

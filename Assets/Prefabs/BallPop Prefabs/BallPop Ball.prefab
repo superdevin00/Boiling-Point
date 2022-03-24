@@ -156,9 +156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4d709f42964e443ae1a3147143305c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitGroundParticles: {fileID: 8939346905723313405, guid: eb6cf6f0c8fc4dd42800af9c2424fa59,
-    type: 3}
   hitGroundAudio: {fileID: 4598377012344830762}
+  BallPopController: {fileID: 5238249576493089996, guid: d9faffed983ce694e8a9a97f4abdc7ee,
+    type: 3}
 --- !u!82 &4598377012344830762
 AudioSource:
   m_ObjectHideFlags: 0

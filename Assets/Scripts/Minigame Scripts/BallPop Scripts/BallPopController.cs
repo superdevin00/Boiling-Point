@@ -15,8 +15,15 @@ public class BallPopController : MonoBehaviour
     [SerializeField] ParticleSystem poppedParticles;
     [SerializeField] AudioSource poppedAudio;
 
+    MinigameManager minigameManager;
+
+    public int score = 0;
+
     private void Start()
     {
+        minigameManager = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<MinigameManager>();
+        minigameManager.initMinigame("Pop 12 Balls!", 12);
+
         ChooseSpawn();
     }
 
@@ -36,6 +43,8 @@ public class BallPopController : MonoBehaviour
                     Debug.Log("Ball clicked");
                     spawnedBall = raycastHit.collider.gameObject;
 
+                    score += 1;
+
                     poppedParticles.transform.position = spawnedBall.transform.position;
                     poppedParticles.Play();
 
@@ -44,6 +53,12 @@ public class BallPopController : MonoBehaviour
                     Destroy(spawnedBall);  
                 }
             }
+        }
+
+        if(score >= 12)
+        {
+            minigameManager.setWinConditionMet(true);
+            Debug.Log("Win Condition Met");
         }
     }
 

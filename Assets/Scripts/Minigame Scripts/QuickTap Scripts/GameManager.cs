@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
             if (score >= 15)
             {
                 minigameManager.setWinConditionMet(true);
+                Debug.Log("Win Condition Met");
             }
         }
         else

@@ -16,6 +16,9 @@ public class BallCollisions : MonoBehaviour
     [SerializeField] AudioSource resetAudio;
 
     MinigameManager minigameManager;
+
+    int score = 0;
+
     private void Start()
     {
         minigameManager = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<MinigameManager>();
@@ -30,6 +33,14 @@ public class BallCollisions : MonoBehaviour
 
             goalParticles.Play();
             goalAudio.Play();
+
+            score += 1;
+
+            if(score >= 1)
+            {
+                minigameManager.setWinConditionMet(true);
+                Debug.Log("Win Condition Met");
+            }
 
             NewShot();
         }
