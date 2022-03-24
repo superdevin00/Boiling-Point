@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minigame Scenes/MiniGamePiano.unity
     guid: 74e1c14439861194cb22d86405fb7adb
+  - enabled: 1
+    path: Assets/Scenes/Minigame Scenes/BallPop.unity
+    guid: cbd1eab4cbee08f4b8e11338eec51f38
   m_configObjects: {}

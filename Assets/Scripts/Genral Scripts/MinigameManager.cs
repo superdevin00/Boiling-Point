@@ -27,6 +27,10 @@ public class MinigameManager : MonoBehaviour
 
     public ParticleSystem confetti;
     public ParticleSystem flames;
+    private Vector3 confettiBasePos;
+    private Vector3 confettiBaseScale;
+    private Vector3 flamesBasePos;
+    private Vector3 flamesBaseScale;
 
     float gameSpeed;
     int gameDifficulty;
@@ -36,6 +40,10 @@ public class MinigameManager : MonoBehaviour
     public string[] minigameScenes;
     SceneLoader sceneLoader;
     //GameObject mainCamera;
+
+    public AudioSource audioSource;
+    public AudioClip winSFX;
+    public AudioClip loseSFX;
     
 
 
@@ -50,6 +58,11 @@ public class MinigameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
+
+        confettiBasePos = confetti.transform.position;
+        confettiBaseScale = confetti.transform.localScale;
+        flamesBasePos = flames.transform.position;
+        flamesBaseScale = flames.transform.localScale;
     }
 
     // Start is called before the first frame update
@@ -60,6 +73,8 @@ public class MinigameManager : MonoBehaviour
         sceneLoader = GetComponent<SceneLoader>();
         //mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         //lives = 2;
+
+
     }
 
     // Update is called once per frame
@@ -103,13 +118,36 @@ public class MinigameManager : MonoBehaviour
             canvas.SetActive(true);
         }
 
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MiniGamePiano"))
+        {
+            confetti.transform.position = new Vector3(7.2f, 31.8f,-3.1f);
+            flames.transform.position = new Vector3(7.2f, 31.8f, -3.1f);
+            flames.transform.localScale = new Vector3(1.4f, 1.4f, 1);
+        }
+        else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("ObjectDetection"))
+        {
+            confetti.transform.position = new Vector3(0, 7.4f, -6.0f);
+            confetti.transform.localScale = new Vector3(0.32f, 0.32f, 0.32f);
+            flames.transform.position = new Vector3(0, -6.8f, -5f);
+            flames.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        }
+        else
+        {
+            confetti.transform.position = confettiBasePos;
+            flames.transform.position = flamesBasePos;
+            confetti.transform.localScale = confettiBaseScale;
+            flames.transform.localScale = flamesBaseScale;
+        }
+
         //Check for winstate for confetti
         if (winConditionMet)
         {
             if (!confetti.isPlaying)
             {
                 confetti.Play();
+                audioSource.PlayOneShot(winSFX,10.0f);
             }
+
         }
         else
         {
@@ -126,6 +164,7 @@ public class MinigameManager : MonoBehaviour
             if (!flames.isPlaying)
             {
                 flames.Play();
+                audioSource.PlayOneShot(winSFX);
             }
         }
         else

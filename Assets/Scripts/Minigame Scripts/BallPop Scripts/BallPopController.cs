@@ -29,33 +29,64 @@ public class BallPopController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) /*Input.touchCount > 0 /*&& Input.GetTouch(0).phase == TouchPhase.Began*/)
+        if (Application.platform == RuntimePlatform.WindowsEditor)
         {
-            Debug.Log("Mouse click");
+            if (Input.GetMouseButtonDown(0) /*Input.touchCount > 0 /*&& Input.GetTouch(0).phase == TouchPhase.Began*/)
+            {
+                Debug.Log("Mouse click");
 
-            Ray raycast = Camera.main.ScreenPointToRay(Input.mousePosition); //Input.GetTouch(0).position);
-            RaycastHit raycastHit;
+                Ray raycast = Camera.main.ScreenPointToRay(Input.mousePosition); //Input.GetTouch(0).position);
+                RaycastHit raycastHit;
 
-            if (Physics.Raycast(raycast, out raycastHit))
-            {   
-                if (raycastHit.collider.tag == "ball")
+                if (Physics.Raycast(raycast, out raycastHit))
                 {
-                    Debug.Log("Ball clicked");
-                    spawnedBall = raycastHit.collider.gameObject;
+                    if (raycastHit.collider.tag == "ball")
+                    {
+                        Debug.Log("Ball clicked");
+                        spawnedBall = raycastHit.collider.gameObject;
 
-                    score += 1;
+                        score += 1;
 
-                    poppedParticles.transform.position = spawnedBall.transform.position;
-                    poppedParticles.Play();
+                        poppedParticles.transform.position = spawnedBall.transform.position;
+                        poppedParticles.Play();
 
-                    poppedAudio.Play();
+                        poppedAudio.Play();
 
-                    Destroy(spawnedBall);  
+                        Destroy(spawnedBall);
+                    }
+                }
+            }
+        }
+        else if (Application.platform == RuntimePlatform.Android)
+        {
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                Debug.Log("Mouse click");
+
+                Ray raycast = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+                RaycastHit raycastHit;
+
+                if (Physics.Raycast(raycast, out raycastHit))
+                {
+                    if (raycastHit.collider.tag == "ball")
+                    {
+                        Debug.Log("Ball clicked");
+                        spawnedBall = raycastHit.collider.gameObject;
+
+                        score += 1;
+
+                        poppedParticles.transform.position = spawnedBall.transform.position;
+                        poppedParticles.Play();
+
+                        poppedAudio.Play();
+
+                        Destroy(spawnedBall);
+                    }
                 }
             }
         }
 
-        if(score >= 12)
+        if (score >= 12)
         {
             minigameManager.setWinConditionMet(true);
             Debug.Log("Win Condition Met");
