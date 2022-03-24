@@ -121,7 +121,7 @@ public class MinigameManager : MonoBehaviour
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MiniGamePiano"))
         {
             confetti.transform.position = new Vector3(7.2f, 31.8f,-3.1f);
-            flames.transform.position = new Vector3(7.2f, 31.8f, -3.1f);
+            flames.transform.position = new Vector3(8f, -1f, -1.6f);
             flames.transform.localScale = new Vector3(1.4f, 1.4f, 1);
         }
         else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("ObjectDetection"))
@@ -130,6 +130,20 @@ public class MinigameManager : MonoBehaviour
             confetti.transform.localScale = new Vector3(0.32f, 0.32f, 0.32f);
             flames.transform.position = new Vector3(0, -6.8f, -5f);
             flames.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        }
+        else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("QuickTap"))
+        {
+            confetti.transform.position = new Vector3(0, 17.8f, 12.2f);
+            confetti.transform.localScale = new Vector3(1, 1, 1);
+            flames.transform.position = new Vector3(-0.1f, -5.9f, 0.2f);
+            flames.transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("BallPop"))
+        {
+            confetti.transform.position = new Vector3(0, 17.8f, 3.8f);
+            confetti.transform.localScale = new Vector3(1, 1, 1);
+            flames.transform.position = new Vector3(-0.1f, -2.7f, 0.2f);
+            flames.transform.localScale = new Vector3(1, 1, 1);
         }
         else
         {
@@ -172,7 +186,7 @@ public class MinigameManager : MonoBehaviour
             if (flames.isPlaying)
             {
                 flames.Stop();
-                confetti.Clear();
+                flames.Clear();
             }
         }
 

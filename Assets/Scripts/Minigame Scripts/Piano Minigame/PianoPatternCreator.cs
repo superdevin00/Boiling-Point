@@ -113,6 +113,7 @@ public class PianoPatternCreator : MonoBehaviour
         }
         mainCamera.backgroundColor = new Color(255f, 0f, 0f);
         minigameManager.setWinConditionMet(false);
+        minigameManager.setLoseConditionMet(true);
     }
 
     public void winGame()

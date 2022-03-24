@@ -13,7 +13,7 @@ public class GroundDetection : MonoBehaviour
         if (other.gameObject.tag == "ground")
         {
             BallPopController.score -= 1;
-            hitGroundAudio.Play();
+            //hitGroundAudio.Play();
             Destroy(gameObject, .3f);
         }
     }

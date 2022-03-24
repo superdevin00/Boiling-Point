@@ -18,6 +18,7 @@ public class PianoTileController : MonoBehaviour
     public bool pressed;
     public bool locked;
     public bool failed;
+    public AudioClip tapSFX;
     public MinigameManager minigameManager;
     
 
@@ -96,6 +97,7 @@ public class PianoTileController : MonoBehaviour
                     if (black)
                     {
                         parentRow.advanceRow();
+                        AudioSource.PlayClipAtPoint(tapSFX, new Vector3(7.3f,15,-10));
                     }
                     else
                     {

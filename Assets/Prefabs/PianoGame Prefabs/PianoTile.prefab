@@ -106,6 +106,7 @@ MonoBehaviour:
   pressed: 0
   locked: 0
   failed: 0
+  tapSFX: {fileID: 8300000, guid: c197c4eea92b5b44893954da095872fb, type: 3}
   minigameManager: {fileID: 0}
 --- !u!61 &6530374603320902300
 BoxCollider2D:
