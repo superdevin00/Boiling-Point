@@ -55,9 +55,12 @@ public class BallCollisions : MonoBehaviour
 
     private void NewShot()
     {
-        Instantiate(newBall, ballSpawn.position, Quaternion.identity);
-        Destroy(gameObject, .2f);
+        //Instantiate(newBall, ballSpawn.position, Quaternion.identity);
+        //Destroy(gameObject, .2f);
+        swipe.resetSpeed();
+        gameObject.transform.position = ballSpawn.position;
         swipe.canSwipe = true;
+        
         Debug.Log("canSwipe = true");
     }
 }
