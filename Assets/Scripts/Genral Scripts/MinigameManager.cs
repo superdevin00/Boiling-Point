@@ -11,6 +11,7 @@ public class MinigameManager : MonoBehaviour
     int lives;
 
     bool winConditionMet;
+    bool loseConditionMet;
     bool minigameStarted;
     bool minigameEnded;
 
@@ -23,7 +24,9 @@ public class MinigameManager : MonoBehaviour
 
     public GameObject canvas;
     public GameObject screenFloodImage;
+
     public ParticleSystem confetti;
+    public ParticleSystem flames;
 
     float gameSpeed;
     int gameDifficulty;
@@ -92,6 +95,8 @@ public class MinigameManager : MonoBehaviour
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainMenu"))
         {
             canvas.SetActive(false);
+            setLoseConditionMet(false);
+            setWinConditionMet(false);
         }
         else
         {
@@ -111,6 +116,24 @@ public class MinigameManager : MonoBehaviour
             if (confetti.isPlaying)
             {
                 confetti.Stop();
+                confetti.Clear();
+            }
+        }
+
+        //Check for losestate for flames
+        if (loseConditionMet)
+        {
+            if (!flames.isPlaying)
+            {
+                flames.Play();
+            }
+        }
+        else
+        {
+            if (flames.isPlaying)
+            {
+                flames.Stop();
+                confetti.Clear();
             }
         }
 
@@ -196,6 +219,7 @@ public class MinigameManager : MonoBehaviour
     public void initMinigame(string prompt, float time)
     {
         setWinConditionMet(false);
+        setLoseConditionMet(false);
         StartCoroutine(minigameStartSequence(prompt, time));
     }
 
@@ -276,6 +300,10 @@ public class MinigameManager : MonoBehaviour
     public void setWinConditionMet(bool winCon)
     {
         winConditionMet = winCon;
+    }
+    public void setLoseConditionMet(bool loseCon)
+    {
+        loseConditionMet = loseCon;
     }
 
     // Get/Set MinigameStarted
