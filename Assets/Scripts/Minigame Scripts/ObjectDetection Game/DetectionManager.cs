@@ -17,6 +17,7 @@ public class DetectionManager : MonoBehaviour
     [SerializeField] GameObject pentagon;
 
     GameObject[] shapes = new GameObject[3];
+    [SerializeField] GameObject[] shades;
     int selectedIndex = -1;
     int correctAnswer;
 
@@ -36,6 +37,7 @@ public class DetectionManager : MonoBehaviour
         minigameManager.initMinigame("Look Closely!", 8);
 
         correctAnswer = Random.Range(0, 3);
+        int shadeIndex = Random.RandomRange(0, 3);
 
         shapes[0] = triangle;
         shapes[1] = square;
@@ -44,7 +46,11 @@ public class DetectionManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             shapes[i].SetActive(i == correctAnswer);
+            shades[i].SetActive(i == shadeIndex);
         }
+
+        
+
     }
 
     private void Update()
@@ -63,7 +69,7 @@ public class DetectionManager : MonoBehaviour
             else
             {
                 lose.SetActive(true);
-                minigameManager.setWinConditionMet(false);
+                minigameManager.setLoseConditionMet(true);
             }
         }
     }

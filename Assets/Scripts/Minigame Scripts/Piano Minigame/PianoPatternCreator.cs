@@ -19,7 +19,7 @@ public class PianoPatternCreator : MonoBehaviour
     void Start()
     {
         minigameManager = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<MinigameManager>();
-        minigameManager.initMinigame("Tap 10 Keys!", 10);
+        minigameManager.initMinigame("Tap 10 Keys!", 6);
         //Debug.Log("Fill Pattern Start");
         fillPattern();
         //Debug.Log("Fill Pattern Done");
