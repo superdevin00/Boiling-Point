@@ -16,11 +16,14 @@ public class MinigameManager : MonoBehaviour
 
     public TMP_Text scoreText;
     public TMP_Text livesText;
+    public Image livesImage;
+    public Sprite[] livesSprites;
     public TMP_Text timeText;
     public TMP_Text promptText;
 
     public GameObject canvas;
     public GameObject screenFloodImage;
+    public ParticleSystem confetti;
 
     float gameSpeed;
     int gameDifficulty;
@@ -29,7 +32,7 @@ public class MinigameManager : MonoBehaviour
     Queue<string> playedGames = new Queue<string>();
     public string[] minigameScenes;
     SceneLoader sceneLoader;
-
+    //GameObject mainCamera;
     
 
 
@@ -52,6 +55,7 @@ public class MinigameManager : MonoBehaviour
         gameDifficulty = 1;
         gameSpeed = 1.0f;
         sceneLoader = GetComponent<SceneLoader>();
+        //mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         //lives = 2;
     }
 
@@ -64,20 +68,21 @@ public class MinigameManager : MonoBehaviour
         //Set Lives Text
         switch (lives)
         {
-            case 3: 
-                livesText.text = "~~~";
+            case 3:
+                livesImage.sprite = livesSprites[3];
                 break;
             case 2:
-                livesText.text = "~~";
+                livesImage.sprite = livesSprites[2];
                 break;
             case 1:
-                livesText.text = "~";
+                livesImage.sprite = livesSprites[1];
                 break;
             case 0:
-                livesText.text = "X";
+                livesImage.sprite = livesSprites[0];
                 break;
             default:
-                livesText.text = "err";
+                livesImage.sprite = livesSprites[0];
+                //livesText.text = "err";
                 break;
 
         }
@@ -91,6 +96,22 @@ public class MinigameManager : MonoBehaviour
         else
         {
             canvas.SetActive(true);
+        }
+
+        //Check for winstate for confetti
+        if (winConditionMet)
+        {
+            if (!confetti.isPlaying)
+            {
+                confetti.Play();
+            }
+        }
+        else
+        {
+            if (confetti.isPlaying)
+            {
+                confetti.Stop();
+            }
         }
 
         //Update Timescale

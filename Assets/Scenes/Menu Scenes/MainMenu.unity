@@ -532,6 +532,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1087422842, guid: 0de9e5eb728df1743acd7f6893b429c6, type: 3}
+      propertyPath: m_Name
+      value: Confetti
+      objectReference: {fileID: 0}
     - target: {fileID: 1049575228507330224, guid: 0de9e5eb728df1743acd7f6893b429c6,
         type: 3}
       propertyPath: m_LocalPosition.x
